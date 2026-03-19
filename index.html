@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MMChula | Master of Management - Chulalongkorn University</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee1777",
+                        "secondary": "#72acdd",
+                        "background-light": "#f8f6f7",
+                        "background-dark": "#221018",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .nav-item-hover:hover .dropdown {
+            display: block;
+        }
+        .dot.active {
+            background-color: #ee1777; /* Matches your primary color */
+            box-shadow: 0 0 0 4px rgba(238, 23, 119, 0.2);
+        }
+        .text-thirdary {
+            color: #f5511d; /* orange color */
+        }   
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <img alt="MMChula Logo" src="./images/logo.png" width="200" />
+                </div>
+                <div class="hidden lg:flex items-center gap-6">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            About Us <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Mission &amp; Vision</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Management Team</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Advisory Board</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Thai Professor</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">International Professor</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Admission <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Requirement</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Schedule</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Course Structure</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Program Fee</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Current Student <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Academic Calendar</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">Student Exchange</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/10" href="#">IS Topic</a>
+                        </div>
+                    </div>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">FAQ</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact Us</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="material-symbols-outlined p-2 text-slate-600 hover:text-primary transition-colors">search</button>
+                    <button
+                        class="bg-primary text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 transition-transform">Apply
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-[85vh] flex items-center overflow-hidden bg-background-light dark:bg-background-dark">
+        <div class="absolute inset-0 z-0">
+            <!-- Slider Container -->
+            <div class="relative w-full h-full overflow-hidden">
+                <!-- Slide 1 -->
+                <div class="absolute inset-0 slide transition-opacity duration-1000 opacity-100">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent z-10 dark:from-background-dark dark:via-background-dark/70">
+                    </div>
+                    <img alt="Modern University Campus" class="w-full h-full object-cover"
+                        src="./images/heros/mmchula-primary.jpg" />
+                </div>
+                <!-- Slide 2 -->
+                <div class="absolute inset-0 slide transition-opacity duration-1000 opacity-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent z-10 dark:from-background-dark dark:via-background-dark/70">
+                    </div>
+                    <img alt="Modern Lecture Hall" class="w-full h-full object-cover"
+                        src="./images/heros/mmchla-building.png" />
+                </div>
+                <!-- Slide 3 -->
+                <div class="absolute inset-0 slide transition-opacity duration-1000 opacity-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent z-10 dark:from-background-dark dark:via-background-dark/70">
+                    </div>
+                    <img alt="Students Collaborating" class="w-full h-full object-cover"
+                        src="./images/heros/student.png" />
+                </div>
+                <!-- Slide 4 -->
+                <div class="absolute inset-0 slide transition-opacity duration-1000 opacity-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent z-10 dark:from-background-dark dark:via-background-dark/70">
+                    </div>
+                    <img alt="Students Collaborating" class="w-full h-full object-cover"
+                        src="./images/heros/mmchula-thai.png" />
+                </div>
+                <!-- Slide 5 -->
+                <div class="absolute inset-0 slide transition-opacity duration-1000 opacity-0">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-background-light via-background-light/60 to-transparent z-10 dark:from-background-dark dark:via-background-dark/70">
+                    </div>
+                    <img alt="Students Collaborating" class="w-full h-full object-cover"
+                        src="./images/heros/Why MM.jpg" />
+                </div>
+            </div>
+            <!-- Slider Navigation Dots -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+                <button class="w-3 h-3 rounded-full dot active bg-white/50 hover:bg-primary transition-all"></button>
+                <button class="w-3 h-3 rounded-full dot bg-white/50 hover:bg-primary transition-all"></button>
+                <button class="w-3 h-3 rounded-full dot bg-white/50 hover:bg-primary transition-all"></button>
+                <button class="w-3 h-3 rounded-full dot bg-white/50 hover:bg-primary transition-all"></button>
+                <button class="w-3 h-3 rounded-full dot bg-white/50 hover:bg-primary transition-all"></button>
+            </div>
+        </div>
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-xs font-bold uppercase tracking-wider mb-6">
+                    <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                    Next Generation Global Leaders
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black text-slate-900 dark:text-white leading-[0.9] mb-6">
+                    <span class="text-primary">M</span><span class="text-thirdary">M</span>CHULA
+                </h1>
+                <p class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-10 max-w-lg">
+                    An international business flagship program, the Master of Management in International Business Management (International Program) (MM) at Chulalongkorn Business School.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button
+                        class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/30 hover:-translate-y-1 transition-all">
+                        Enroll Now
+                    </button>
+                    <button
+                        class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-100 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:border-primary/20 transition-all flex items-center gap-2">
+                        View Curriculum <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="mt-12 flex items-center gap-8 border-t border-slate-200 dark:border-slate-700 pt-8">
+                    <div>
+                        <img src="./images/CBS.png" style="width:122px; padding-left: 20px;" />
+                    </div>
+                    <div>
+                        <img src="./images/aacsb.png" style="width:80px; padding-left: 20px;" />
+                    </div>
+                    <div>
+                        <img src="./images/EQUIS_logo13-HR.png" style="width:80px; padding-left: 20px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Announcement Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-2">What's Happening</h2>
+                    <p class="text-slate-500">Stay updated with the latest news and academic events</p>
+                </div>
+                <a class="text-primary font-bold flex items-center gap-1 hover:underline" href="#">
+                    View All News <span class="material-symbols-outlined">chevron_right</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Announcement Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative h-64 mb-4 overflow-hidden rounded-2xl">
+                        <img alt="Admission Open"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Students cheering in a classroom setting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfQiKZNNBP88Gy1u4WbeeS8vqu-_ySWuDAwLz89ppHBVOVa3DmAqO5F9gayFfsudxRaU3wECwNmKITQu5bU-tGy9GYeiLEWMSP_Ls2V37wJFaLKRmzghHu6hs3VuTCwtIfbZo8_UJ4-5L8jW3GbNGJoOg7gai8M09EaYCHcLNJWYeG9rgZqtOntif3bfAqb_67kO5twWK_em7KMYzU4b4B4rzK7KNjO7Pf14eeVy6bZtHN3zZnx86S3Sm7lb5kUbOPJAprVV8K5Aw" />
+                        <div
+                            class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                            Update</div>
+                    </div>
+                    <p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">October 24, 2024</p>
+                    <h3 class="text-xl font-bold group-hover:text-primary transition-colors mb-2">Academic Year 2025:
+                        Batch 1 Admission Now Open</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">Start your journey toward
+                        becoming a global business leader. Applications are being accepted until November 30th.</p>
+                </div>
+                <!-- Announcement Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative h-64 mb-4 overflow-hidden rounded-2xl">
+                        <img alt="International Partnership"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Business professionals networking at a conference"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgH6sR8xVL5t8vwtzun6mD9WkKpXqqXfVTpHrwAFjiK4pvy43t_NFZCNOQt-tP83dJX2rfzItPQlcxoz2ptEeXg2kaDI6Rv1LGXAgW0zq_JqfiM-o39Ng4EmYMIgboawE7AXNyp3PnKrq2LGO4CHzeKstbJpcXMi_WAgqtkm4bcotlRk9K9JB8IPqq_X3yxoFrVRKVjFlUj_qSzECDFFnVk6pmjJHeNh2UNjuIxhFhtAbxvHIHmpmAdHhgb64IeMI1ScIft4nOvK8" />
+                        <div
+                            class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                            Global</div>
+                    </div>
+                    <p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">October 15, 2024</p>
+                    <h3 class="text-xl font-bold group-hover:text-primary transition-colors mb-2">New Strategic
+                        Partnership with LSE Business School</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">Enhancing our student exchange
+                        network with one of the world's most prestigious institutions.</p>
+                </div>
+                <!-- Announcement Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative h-64 mb-4 overflow-hidden rounded-2xl">
+                        <img alt="Student Achievement"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Two students studying together in a modern library"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOZhe3hCH9kiQVI5OP3_-glBAq_y16fvKjDyNqJobq8-oNeybkzXKv8Il7xfT29YDmSC4ihfKx1iVf7HOrfLT5zC0QtUd8A26vmBjnYbGeS8kh-4pQDJTUopHMQQYb_hhiOD8D8EVGRjBzzT6ew1yzIeNa90w6gHiwTnbYzO3Qe-IR2hCOMcyy7qE_CDZ4ML6qZ3z98wJ22-b1tnDY6_Eeay7tGBp1EJ5o-0Dw1iaulY4vGgKtlorgmv9ZBrLn0KX2TIqGQGnlZ1o" />
+                        <div
+                            class="absolute top-4 left-4 bg-slate-900 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                            Achievement</div>
+                    </div>
+                    <p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">October 02, 2024</p>
+                    <h3 class="text-xl font-bold group-hover:text-primary transition-colors mb-2">MMChula Teams Sweep
+                        National Case Competition</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">Congratulations to our students
+                        for securing both Gold and Silver awards at the National Management Cup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Snippet & Vision -->
+    <section class="py-24 bg-background-light dark:bg-slate-900 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 translate-x-1/4"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4">About the Program</h2>
+                    <h3 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 leading-tight">
+                        Program<span class="text-secondary">Overview</span>
+                    </h3>
+                    <p class="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
+                        An international business flagship program, the Master of Management in International Business Management (International Program) (MM) at Chulalongkorn Business School, Chulalongkorn University is interdisciplinary and focuses on emerging trends in the global market environment. The program draws on Thailand’s unique geographical position and history. It enables a transformative learning experience in the heart of Bangkok where international business cultures meet to help build a truly global mindset in business.
+We help our students develop a courageous attitude and nurture them to be a professional leader equipped with international vision, capable of guiding their companies towards internationalization, and culturally sensitive.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div
+                                class="shrink-0 w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm border border-primary/10">
+                                <span class="material-symbols-outlined text-primary">visibility</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Our Vision</h4>
+                                <p class="text-sm text-slate-500">To be the preeminent hub for management education in
+                                    ASEAN, fostering innovation and ethical leadership.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="shrink-0 w-12 h-12 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shadow-sm border border-primary/10">
+                                <span class="material-symbols-outlined text-primary">flag</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white mb-1">Our Mission</h4>
+                                <p class="text-sm text-slate-500">Empowering individuals to become transformative
+                                    leaders through academic rigor and practical industry exposure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4 pt-12">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img alt="Brainstorming" class="w-full h-64 object-cover"
+                                data-alt="A group of diverse professionals brainstorming in a modern office"
+                                src="./images/comic-study.png" />
+                        </div>
+                        <div class="bg-primary p-8 rounded-2xl text-white">
+                            <span class="material-symbols-outlined text-4xl mb-4">language</span>
+                            <h4 class="text-2xl font-bold mb-2">Global Network</h4>
+                            <p class="text-sm text-white/80">Connect with partners across 5 continents.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-secondary p-8 rounded-2xl text-white">
+                            <span class="material-symbols-outlined text-4xl mb-4">groups</span>
+                            <h4 class="text-2xl font-bold mb-2">Expert Faculty</h4>
+                            <p class="text-sm text-white/80">Learn from world-class Thai and international professors.
+                            </p>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img alt="Seminar" class="w-full h-64 object-cover"
+                                data-alt="A female professor leading a seminar with engaged students"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOAK7QclMvVZgvjrjCgM07KJNtgMf_tfggOZ-MZkF_pjywC3uwgLa4BiZYNiYpCTed_NN0z6qOrMUhn-ULN2aAVKrm2EsFZH_PpjqO_5Ak8FF_O5fafOoDBVwo4k-WpCPGvl5L8HjUgCEVGgLAuRNCzpw4r1iK5QyOqh-VRZsKA6DxvnE0AjbYQ6Ob6U3yn1aBrP4CHQiELGo2RaMGlpiR8lMIpfUciy56ccyghONnaZkydaENOyuw7XccUG4tSo7eANuTtpCiU8" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Admission Highlights -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-black text-slate-900 dark:text-white mb-4">Join Our Next Cohort</h2>
+                <p class="text-slate-500">Everything you need to know about the admission process for the upcoming
+                    academic year.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Highlight 1 -->
+                <div
+                    class="bg-background-light dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-primary text-4xl mb-6 block group-hover:scale-110 transition-transform">fact_check</span>
+                    <h4 class="font-bold text-lg mb-3">Requirements</h4>
+                    <ul class="text-sm text-slate-500 space-y-2">
+                        <li>• Bachelor's Degree</li>
+                        <li>• 1+ Years Work Exp.</li>
+                        <li>• English Proficiency (TOEFL/IELTS)</li>
+                        <li>• CU-BEST or GMAT</li>
+                    </ul>
+                </div>
+                <!-- Highlight 2 -->
+                <div
+                    class="bg-background-light dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-primary text-4xl mb-6 block group-hover:scale-110 transition-transform">calendar_month</span>
+                    <h4 class="font-bold text-lg mb-3">Schedule</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-primary uppercase">Batch 1</p>
+                            <p class="text-sm font-medium">Oct - Nov 2024</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-primary uppercase">Batch 2</p>
+                            <p class="text-sm font-medium">Feb - Mar 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Highlight 3 -->
+                <div
+                    class="bg-background-light dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-primary text-4xl mb-6 block group-hover:scale-110 transition-transform">payments</span>
+                    <h4 class="font-bold text-lg mb-3">Program Fee</h4>
+                    <p class="text-2xl font-black text-slate-900 dark:text-white mb-2">495,000 <span
+                            class="text-sm font-normal text-slate-400">THB</span></p>
+                    <p class="text-xs text-slate-500">Full program tuition including all international study trip
+                        options.</p>
+                </div>
+                <!-- Highlight 4 -->
+                <div
+                    class="bg-primary p-8 rounded-3xl text-white flex flex-col justify-between shadow-xl shadow-primary/20">
+                    <div>
+                        <h4 class="font-bold text-xl mb-4">Start Your Application Today</h4>
+                        <p class="text-sm text-white/80">Our recruitment team is ready to guide you through every step
+                            of the process.</p>
+                    </div>
+                    <button
+                        class="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm mt-8 hover:bg-slate-100 transition-colors">
+                        Begin Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-background-dark text-slate-400 py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="bg-primary p-1.5 rounded-lg">
+                            <span class="material-symbols-outlined text-white text-xl">school</span>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter text-white">MMChula</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        The Master of Management Program at Chulalongkorn Business School. Shaping global leaders since
+                        1996.
+                    </p>
+                    <div class="flex gap-4">
+                        <!-- Facebook -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.facebook.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.instagram.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.linkedin.com/company/master-of-management-mmchula/" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://tiktok.com/@master.of.management" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.3-.72.42-1.33 1.11-1.52 1.93-.21.81-.13 1.69.26 2.42.39.73 1.12 1.25 1.93 1.43.91.22 1.91.03 2.67-.54.61-.43.95-1.14 1.05-1.86.08-1.48.03-2.96.04-4.44.01-4.33 0-8.67.01-13z"/>
+                            </svg>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.youtube.com/channel/UC3RReA-rFFxAnGpef-FaOWA">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                                </path>
+                            </svg>
+                        </a>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Navigation</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Admission</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Academic Calendar</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Support</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Student Portal</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Alumni Network</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Contact</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                            Master of Management in International Business (International Program)<br />
+                            Faculty of Commerce and Accountancy, Chulalongkorn University, Pathumwan, Bangkok, 10330 Thailand
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">mail</span>
+                            mmchula@cbs.chula.ac.th
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">call</span>
+                            +66 2218 5912, +66 2218 6131, +66 84 555 6087
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>© 2024 Master of Management Program, Chulalongkorn Business School. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide'); 
+        const dots = document.querySelectorAll('.dot'); 
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index); // active
+            });
+        }
+
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 3000); // 3秒ごとに切り替え
+
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+    </script>
+</body>
+
+</html>
