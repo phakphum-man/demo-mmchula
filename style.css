@@ -42,7 +42,11 @@
 .slide-content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* ให้ชิดซ้ายตามแกน */
+    padding-left: 5%; /* หรือปรับค่า pixel ให้ตรงกับตำแหน่ง Logo */
 }
 
 h1 { font-size: 3rem; margin: 15px 0; }
