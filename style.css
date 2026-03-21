@@ -1,0 +1,167 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', sans-serif; }
+
+.hero-slider {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper { width: 100%; height: 100%; }
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; /* ข้อความอยู่กลางแนวตั้ง */
+    padding-left: 10%;
+    color: white;
+    overflow: hidden; /* สำคัญมาก: ไม่ให้ภาพที่ขยายล้นออกมา */
+    background-image: none !important; /* ลบอันเก่าออกหากใส่ไว้ใน inline style */
+}
+
+/* overlay มืดๆ เพื่อให้ตัวหนังสืออ่านง่าย */
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* เลเยอร์สำหรับภาพพื้นหลังโดยเฉพาะ */
+.slide-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* อยู่หลังเนื้อหา */
+    
+    /* เริ่มต้น: ให้ภาพขยายไว้นิดนึง (เช่น 105%) เพื่อให้เวลาหดกลับไม่เห็นขอบดำ */
+    transform: scale(1.1); 
+    transition: transform 6s ease-out; /* ระยะเวลาขยาย */
+}
+
+/* คลาสที่จะถูกเติมด้วย JS เมื่อสไลด์ทำงาน */
+.swiper-slide-active .slide-bg {
+    /* เมื่อ active ให้ขยายจาก 1.1 เป็น 1.15 หรือ 1.2 */
+    transform: scale(1); /* ตัวอย่าง Waseda ดูเหมือนจะใช้การย่อลงนิดๆ หรือขยายขึ้นน้อยมาก */
+    /* หรือถ้าอยากให้ขยายขึ้น: transform: scale(1.2); */
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+h1 { font-size: 3rem; margin: 15px 0; }
+.btn-more {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-more:hover { background: white; color: black; }
+
+/* จัดวางตำแหน่ง Pagination */
+.swiper-pagination {
+    bottom: 40px !important; /* ปรับระยะห่างจากขอบล่าง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* ระยะห่างระหว่างวงกลม */
+}
+
+/* สไตล์วงกลมปกติ (สีขาวใส) */
+.swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.6); /* สีขาวโปร่งแสง */
+    opacity: 1; /* รีเซ็ตค่าเริ่มต้นของ Swiper */
+    margin: 0 !important;
+    transition: all 0.3s ease;
+}
+
+/* สไตล์วงกลมตอน Active (สีชมพู) */
+.swiper-pagination-bullet-active {
+    background: #e6006b; /* สีชมพูเข้มแบบในภาพ */
+    transform: scale(1.2);
+    position: relative;
+}
+
+/* สร้างวงแหวนจางๆ ล้อมรอบจุด Active */
+.swiper-pagination-bullet-active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px; /* ขนาดวงแหวน */
+    height: 26px;
+    background: rgba(230, 0, 107, 0.3); /* สีชมพูจางๆ */
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* 1. ตั้งค่าเริ่มต้นให้ตัวหนังสือซ่อนไว้ก่อน */
+.slide-content h1,
+.slide-content p,
+.slide-content .btn-more {
+    opacity: 0;
+    transform: translateY(30px); /* เลื่อนลงไปข้างล่าง 30px */
+    transition: all 0.8s ease-out;
+}
+
+/* 2. เมื่อสไลด์ทำงาน (Active) ให้แสดงตัวหนังสือ */
+.swiper-slide-active .slide-content h1,
+.swiper-slide-active .slide-content p,
+.swiper-slide-active .slide-content .btn-more {
+    opacity: 1;
+    transform: translateY(0); /* เลื่อนกลับมาที่เดิม */
+}
+
+/* 3. ใส่ Delay ให้แต่ละบรรทัด (หัวใจสำคัญของ Waseda Style) */
+.swiper-slide-active .slide-content h1 {
+    transition-delay: 0.3s; /* หัวข้อมาก่อน */
+}
+
+.swiper-slide-active .slide-content p {
+    transition-delay: 0.6s; /* Paragraph ตามมาห่างๆ */
+}
+
+.swiper-slide-active .slide-content .btn-more {
+    transition-delay: 0.9s; /* ปุ่มมาสุดท้าย */
+}
+
+/* แถม: เอฟเฟกต์ขีดเส้นใต้สีแดงแบบ Waseda (ถ้ามีสแปน category) */
+.category {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.swiper-slide-active .category {
+    opacity: 1;
+}
+
+.category::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e6006b;
+    transition: width 1s ease-in-out 0.2s;
+}
+
+.swiper-slide-active .category::after {
+    width: 100%; /* เส้นค่อยๆ วิ่งฉีดออกไป */
+}
