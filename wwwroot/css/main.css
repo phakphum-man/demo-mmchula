@@ -1,0 +1,327 @@
+/* Base Styles */
+body {
+    font-family: 'Lexend', sans-serif;
+}
+
+.nav-item-hover:hover .dropdown {
+    display: block;
+}
+
+.dot.active {
+    background-color: #ee1777;
+    box-shadow: 0 0 0 4px rgba(238, 23, 119, 0.2);
+}
+
+.text-thirdary {
+    color: #f5511d;
+}
+
+/* Admission Highlights Animation */
+.admission-highlight-title,
+.admission-highlight-subtitle,
+.highlight-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease var(--delay), transform 1s ease var(--delay);
+}
+
+.admission-highlight-title.visible,
+.admission-highlight-subtitle.visible,
+.highlight-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight-card {
+    transition-duration: 1s;
+}
+
+/* YouTube Container */
+.youtube-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 20px;
+}
+
+.youtube-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Facebook Container */
+.facebook-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 20px;
+    background: #f0f2f5;
+}
+
+.facebook-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slider .swiper {
+    height: 100%;
+}
+
+.hero-slider .swiper-slide {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.85);
+}
+
+.slide-content {
+    position: relative;
+    z-index: 20;
+    max-width: 720px;
+    padding: 48px;
+}
+
+.slide-inner {
+    width: 100%;
+}
+
+.slide-content .category {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.slide-content h1 {
+    color: #fff;
+    font-size: 48px;
+    line-height: 1;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.slide-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 18px;
+}
+
+.btn-more {
+    display: inline-block;
+    background: #fff;
+    color: #111827;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Editorial Grid */
+.editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+
+.text-stroke-primary {
+    -webkit-text-stroke: 1px #EE1777;
+    color: transparent;
+}
+
+/* Details/Summary */
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Swiper Slide Styles */
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    color: white;
+    overflow: hidden;
+    background-image: none !important;
+}
+
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: scale(1.1);
+    transition: transform 6s ease-out;
+}
+
+.swiper-slide-active .slide-bg {
+    transform: scale(1);
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 5%;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 15px 0;
+}
+
+.btn-more {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: 1px solid white;
+    color: black;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-more:hover {
+    background: white;
+    color: black;
+}
+
+/* Swiper Pagination */
+.swiper-pagination {
+    bottom: 40px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #e6006b;
+    transform: scale(1.2);
+    position: relative;
+}
+
+.swiper-pagination-bullet-active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px;
+    height: 26px;
+    background: rgba(230, 0, 107, 0.3);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Slide Content Animation */
+.slide-content h1,
+.slide-content p,
+.slide-content .btn-more {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.swiper-slide-active .slide-content h1,
+.swiper-slide-active .slide-content p,
+.swiper-slide-active .slide-content .btn-more {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.swiper-slide-active .slide-content h1 {
+    transition-delay: 0.3s;
+}
+
+.swiper-slide-active .slide-content p {
+    transition-delay: 0.6s;
+}
+
+.swiper-slide-active .slide-content .btn-more {
+    transition-delay: 0.9s;
+}
+
+/* Category Animation */
+.category {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.swiper-slide-active .category {
+    opacity: 1;
+}
+
+.category::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e6006b;
+    transition: width 1s ease-in-out 0.2s;
+}
+
+.swiper-slide-active .category::after {
+    width: 100%;
+}
