@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Thai Professors - MMChula | Master of Management - Chulalongkorn Business School</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="./wwwroot/css/main.css">
+    <link rel="icon" href="data:,">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="./wwwroot/js/tailwind-config.js"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-3deg); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: float-reverse 8s ease-in-out infinite; }
+        .animate-float-slow { animation: float 10s ease-in-out infinite; }
+        .animate-pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite;
+        }
+        .animate-marquee { animation: marquee 30s linear infinite; }
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent 0%, rgba(238, 23, 119, 0.08) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fade-in-up 0.8s ease forwards;
+        }
+        .animate-scale-in {
+            opacity: 0;
+            animation: scale-in 0.6s ease forwards;
+        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+        .professor-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease;
+        }
+        .professor-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .professor-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(238, 23, 119, 0.15);
+        }
+        .professor-card .card-image {
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+        .professor-card:hover .card-image {
+            transform: scale(1.08);
+        }
+        .professor-card .card-overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .professor-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .professor-card .cv-link {
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+        }
+        .professor-card:hover .cv-link {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .hero-text-reveal {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #ee1777, transparent);
+            height: 1px;
+        }
+        .rank-badge-professor { background: linear-gradient(135deg, #ee1777, #c4105e); }
+        .rank-badge-associate { background: linear-gradient(135deg, #72acdd, #4a8bc2); }
+        .rank-badge-assistant { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+        .rank-badge-lecturer { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .marquee-track { display: flex; width: max-content; }
+        .counter-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .counter-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-x-hidden">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <img alt="MMChula Logo" src="./wwwroot/images/logo.png" width="200" />
+                </div>
+                <div class="hidden lg:flex items-center gap-6">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./">Home</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./announcement.html">Announcement</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            About Us <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./mission-vision.html">Mission &amp; Vision</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./management-team.html">Management Team</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./advisory-boards.html">Advisory Board</a>
+                            <a class="block px-4 py-2 text-sm bg-primary/10 text-primary font-bold" href="./thai-professor.html">Thai Professor</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./international-professors.html">International Professor</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Admission <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./requirements.html">Requirement</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./schedule.html">Schedule</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./course-structure.html">Course Structure</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./program-fee.html">Program Fee</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Current Student <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./academic-calendar.html">Academic Calendar</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./student-exchange.html">Student Exchange</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./is-topics.html">IS Topic</a>
+                        </div>
+                    </div>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./faq.html">FAQ</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./contact.html">Contact Us</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="material-symbols-outlined p-2 text-slate-600 hover:text-primary transition-colors">search</button>
+                    <button
+                        class="bg-primary text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 transition-transform">Apply
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden min-h-[85vh] flex items-center">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-primary/5 to-surface-container"></div>
+            <div class="absolute inset-0 animate-gradient bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float-reverse"></div>
+            <div class="absolute top-1/2 left-1/3 w-48 h-48 bg-tertiary/10 rounded-full blur-3xl animate-float-slow"></div>
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #ee1777 1px, transparent 1px); background-size: 40px 40px;"></div>
+            <div class="relative max-w-[1440px] mx-auto px-8 md:px-16 py-32">
+                <div class="editorial-grid">
+                    <div class="col-span-12 lg:col-span-8">
+                        <div class="animate-fade-in-up">
+                            <span class="inline-flex items-center gap-2 py-1.5 px-4 bg-white/80 backdrop-blur-sm border border-primary/20 text-primary text-[11px] uppercase tracking-[0.25em] font-bold rounded-full mb-8 shadow-lg shadow-primary/5">
+                                <span class="w-2 h-2 bg-primary rounded-full animate-pulse-ring"></span>
+                                Faculty Directory
+                            </span>
+                        </div>
+                        <h1 class="text-7xl md:text-9xl font-headline font-black tracking-tighter leading-[0.85] mb-8 animate-fade-in-up stagger-2">
+                            Thai <br />
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-pink-500 to-primary animate-gradient">Professors</span>
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-2xl leading-relaxed mb-12 animate-fade-in-up stagger-3">
+                            คณาจารย์ผู้ทรงคุณวุฒิที่พร้อมถ่ายทอดความรู้และประสบการณ์จริง สร้างผู้นำธุรกิจรุ่นใหม่สู่เวทีโลก
+                        </p>
+                        <div class="flex items-center gap-6 animate-fade-in-up stagger-4">
+                            <a href="#all-professors" class="group inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all">
+                                Meet Our Faculty
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_downward</span>
+                            </a>
+                            <div class="flex items-center gap-3 text-sm text-slate-500">
+                                <span class="w-12 h-[1px] bg-slate-300"></span>
+                                23 Distinguished Faculty Members
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+                <span class="text-xs text-slate-400 uppercase tracking-widest">Scroll</span>
+                <span class="material-symbols-outlined text-primary text-2xl">expand_more</span>
+            </div>
+        </section>
+
+        <!-- Marquee Banner -->
+        <div class="bg-primary py-4 overflow-hidden relative">
+            <div class="marquee-track animate-marquee">
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Expert Faculty</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">World-Class Education</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Research Excellence</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Industry Experience</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Global Network</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Expert Faculty</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">World-Class Education</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Research Excellence</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Industry Experience</span>
+                <span class="text-white/40">&#10022;</span>
+                <span class="text-white/90 text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap mx-8">Global Network</span>
+                <span class="text-white/40">&#10022;</span>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="max-w-[1440px] mx-auto px-8 md:px-16 py-20">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="counter-item text-center p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow group">
+                    <div class="text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform">23</div>
+                    <div class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Faculty Members</div>
+                </div>
+                <div class="counter-item text-center p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay: 0.1s">
+                    <div class="text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform">1</div>
+                    <div class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Professor</div>
+                </div>
+                <div class="counter-item text-center p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay: 0.2s">
+                    <div class="text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform">10</div>
+                    <div class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Associate Professors</div>
+                </div>
+                <div class="counter-item text-center p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay: 0.3s">
+                    <div class="text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform">11</div>
+                    <div class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Assistant Professors</div>
+                </div>
+                <div class="counter-item text-center p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay: 0.4s">
+                    <div class="text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform">1</div>
+                    <div class="text-sm text-slate-500 font-semibold uppercase tracking-wider">Lecturer</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professors Grid -->
+        <section class="max-w-[1440px] mx-auto px-8 md:px-16 pb-24">
+            <div class="editorial-grid">
+                <!-- Side Navigation -->
+                <aside class="hidden lg:block lg:col-span-3">
+                    <div class="sticky top-32 space-y-4">
+                        <div class="p-6 bg-white rounded-xl border border-slate-100 shadow-sm">
+                            <h3 class="font-headline font-bold text-xs uppercase tracking-widest mb-6 text-slate-500 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm">filter_list</span>
+                                Filter by Rank
+                            </h3>
+                            <nav class="flex flex-col space-y-3">
+                                <a class="flex items-center group text-sm font-bold text-slate-700 hover:text-primary transition-colors" href="#all-professors">
+                                    <span class="w-2 h-2 rounded-full bg-primary mr-3 group-hover:scale-150 transition-transform"></span>
+                                    All Faculty
+                                </a>
+                                <a class="flex items-center group text-sm font-bold text-slate-700 hover:text-primary transition-colors" href="#professor">
+                                    <span class="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-pink-600 mr-3 group-hover:scale-150 transition-transform"></span>
+                                    Professor
+                                </a>
+                                <a class="flex items-center group text-sm font-bold text-slate-700 hover:text-primary transition-colors" href="#associate-professors">
+                                    <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 mr-3 group-hover:scale-150 transition-transform"></span>
+                                    Associate Professors
+                                </a>
+                                <a class="flex items-center group text-sm font-bold text-slate-700 hover:text-primary transition-colors" href="#assistant-professors">
+                                    <span class="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 mr-3 group-hover:scale-150 transition-transform"></span>
+                                    Assistant Professors
+                                </a>
+                                <a class="flex items-center group text-sm font-bold text-slate-700 hover:text-primary transition-colors" href="#lecturer">
+                                    <span class="w-2 h-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 mr-3 group-hover:scale-150 transition-transform"></span>
+                                    Lecturer
+                                </a>
+                            </nav>
+                        </div>
+                        <div class="relative overflow-hidden rounded-xl h-72 group bg-gradient-to-br from-primary to-pink-600 p-6 flex flex-col justify-end">
+                            <div class="absolute inset-0 opacity-20 animate-shimmer"></div>
+                            <img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30 group-hover:scale-110 transition-transform duration-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn5rb8CTHf2Oatd9nw-TxL9SMo_DO3Je3yr8N4wDZuis2BLb3OstbeZjlV4EKj6sNFPikBqiBejimhx2ishf1EkTXynAeKJyfRxunWV76WEpLHIZBhIgz_2AHAN7xaqzodmq5WDpd_4nXMuCRHifVNZY6dH23S-o84PVA4vh6By_XAZaGgtlWiiy4WW-S077UeHQ9sCA6W9rBv99jhTN4YGWGPSeSCdbTi_2urpvbVjl_jMGX6XJoB63du8IMAgIBWwqmXX0KvUP6oN4PvV7DyARRbvayT62A_3Ott7qjwdenovcVpqjaaWgkdfRYbInQAQPmGQJLfu" />
+                            <h4 class="font-headline text-white font-bold relative z-10 leading-tight text-lg">Ready to learn from the best?</h4>
+                            <p class="text-white/80 text-xs mt-3 relative z-10 leading-relaxed">Join our MM program and study alongside industry experts.</p>
+                            <button class="mt-4 bg-white text-primary px-5 py-2.5 rounded-lg text-xs font-bold w-fit relative z-10 hover:bg-slate-50 hover:scale-105 transition-all shadow-lg">Apply Now</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Professors Content -->
+                <div class="col-span-12 lg:col-span-9">
+
+                    <!-- All Professors -->
+                    <div class="scroll-mt-32 mb-20" id="all-professors">
+                        <div class="flex items-end gap-4 mb-4">
+                            <h2 class="text-5xl font-headline font-extrabold tracking-tight">
+                                All <span class="text-primary">Faculty</span>
+                            </h2>
+                            <div class="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                        </div>
+                        <p class="text-slate-500 mb-10 max-w-lg">Meet our complete roster of Thai faculty members</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Sakda.jpg"
+                                        alt="Professor Dr. Sakda Thanitcul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Professor Dr. Sakda_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-professor text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Professor</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Sakda Thanitcul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chackrit.jpg"
+                                        alt="Associate Professor Dr. Chackrit Duangphastra" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chackrit_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chackrit Duangphastra</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chatpong.jpg"
+                                        alt="Associate Professor Dr. Chatpong Tangmanee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chatpong_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chatpong Tangmanee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chayodom.jpg"
+                                        alt="Associate Professor Dr. Chayodom Sabhasri" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chayadom_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chayodom Sabhasri</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kanibhatti.jpg"
+                                        alt="Associate Professor Dr. Kanibhatti Nitirojntanad" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Kanibhatti_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kanibhatti Nitirojntanad</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Pachsiry.jpg"
+                                        alt="Associate Professor Dr. Pachsiry Chompukum" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Pachsiry_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Pachsiry Chompukum</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Patchara.jpg"
+                                        alt="Associate Professor Dr. Patchara Popaitoon" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Patchara_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Patchara Popaitoon</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Siri-on.jpg"
+                                        alt="Associate Professor Dr. Siri-on Setamanit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Siri-on_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Siri-on Setamanit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Somchanok.jpg"
+                                        alt="Associate Professor Dr. Somchanok Passakonjaras" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Somchanok_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Somchanok Passakonjaras</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Somkiat.jpg"
+                                        alt="Associate Professor Dr. Somkiat Eiamkanchanalai" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Somkiat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Somkiat Eiamkanchanalai</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Tartat.jpg"
+                                        alt="Associate Professor Dr. Tartat Mokkhamakkul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Tartat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Tartat Mokkhamakkul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Anupap.jpg"
+                                        alt="Assistant Professor Dr. Anupap Somboonsavatdee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Anupap_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Anupap Somboonsavatdee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Jananya.jpg"
+                                        alt="Assistant Professor Dr. Jananya Sthienchoak" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Jananya_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Jananya Sthienchoak</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kritinee.jpg"
+                                        alt="Assistant Professor Dr. Kritinee Pongtanalert" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Kritinee_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kritinee Pongtanalert</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kwanrat.jpg"
+                                        alt="Assistant Professor Dr. Kwanrat Suanpong" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Kwanrat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kwanrat Suanpong</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Nongnapat.jpg"
+                                        alt="Assistant Professor Dr. Nongnapat Thosuwanchot" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Nongnapat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Nongnapat Thosuwanchot</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Pimsiri.jpg"
+                                        alt="Assistant Professor Dr. Pimsiri Chiwamit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Pimsiri_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Pimsiri Chiwamit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Punthumadee.jpg"
+                                        alt="Assistant Professor Dr. Punthumadee Katawandee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Punthumadee_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Punthumadee Katawandee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Rapeeporn.jpg"
+                                        alt="Assistant Professor Dr. Rapeeporn Rungsithong" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Rapeeporn_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Rapeeporn Rungsithong</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Ruttachai.jpg"
+                                        alt="Assistant Professor Dr. Ruttachai Seelajaroen" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Ruttachai_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Ruttachai Seelajaroen</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Theeranuch.jpg"
+                                        alt="Assistant Professor Dr. Theeranuch Pusaksrikit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Theeranuch_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Theeranuch Pusaksrikit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Dr.Thira.jpg"
+                                        alt="Assistant Professor Dr. Thira Chavarnakul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Thira_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Thira Chavarnakul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Santhaya.jpg"
+                                        alt="Lecturer Dr. Santhaya Kittikowit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Dr. Santhaya_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-lecturer text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Lecturer</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Santhaya Kittikowit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-mt-32 mb-20" id="professor">
+                        <div class="flex items-end gap-4 mb-4">
+                            <h2 class="text-5xl font-headline font-extrabold tracking-tight">
+                                <span class="text-primary">Professor</span>
+                            </h2>
+                            <div class="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                        </div>
+                        <p class="text-slate-500 mb-10 max-w-lg">Full professor with distinguished research record</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Sakda.jpg"
+                                        alt="Professor Dr. Sakda Thanitcul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Professor Dr. Sakda_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-professor text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Professor</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Sakda Thanitcul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-mt-32 mb-20" id="associate-professors">
+                        <div class="flex items-end gap-4 mb-4">
+                            <h2 class="text-5xl font-headline font-extrabold tracking-tight">
+                                <span class="text-primary">Associate Professors</span>
+                            </h2>
+                            <div class="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                        </div>
+                        <p class="text-slate-500 mb-10 max-w-lg">Associate professors with extensive expertise</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chackrit.jpg"
+                                        alt="Associate Professor Dr. Chackrit Duangphastra" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chackrit_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chackrit Duangphastra</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chatpong.jpg"
+                                        alt="Associate Professor Dr. Chatpong Tangmanee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chatpong_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chatpong Tangmanee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Chayodom.jpg"
+                                        alt="Associate Professor Dr. Chayodom Sabhasri" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Chayadom_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Chayodom Sabhasri</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kanibhatti.jpg"
+                                        alt="Associate Professor Dr. Kanibhatti Nitirojntanad" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Kanibhatti_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kanibhatti Nitirojntanad</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Pachsiry.jpg"
+                                        alt="Associate Professor Dr. Pachsiry Chompukum" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Pachsiry_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Pachsiry Chompukum</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Patchara.jpg"
+                                        alt="Associate Professor Dr. Patchara Popaitoon" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Patchara_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Patchara Popaitoon</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Siri-on.jpg"
+                                        alt="Associate Professor Dr. Siri-on Setamanit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Siri-on_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Siri-on Setamanit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Somchanok.jpg"
+                                        alt="Associate Professor Dr. Somchanok Passakonjaras" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Somchanok_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Somchanok Passakonjaras</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Somkiat.jpg"
+                                        alt="Associate Professor Dr. Somkiat Eiamkanchanalai" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Somkiat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Somkiat Eiamkanchanalai</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Tartat.jpg"
+                                        alt="Associate Professor Dr. Tartat Mokkhamakkul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Associate Professor Dr. Tartat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-associate text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Assoc. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Tartat Mokkhamakkul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-mt-32 mb-20" id="assistant-professors">
+                        <div class="flex items-end gap-4 mb-4">
+                            <h2 class="text-5xl font-headline font-extrabold tracking-tight">
+                                <span class="text-primary">Assistant Professors</span>
+                            </h2>
+                            <div class="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                        </div>
+                        <p class="text-slate-500 mb-10 max-w-lg">Emerging scholars with promising research trajectories</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Anupap.jpg"
+                                        alt="Assistant Professor Dr. Anupap Somboonsavatdee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Anupap_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Anupap Somboonsavatdee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Jananya.jpg"
+                                        alt="Assistant Professor Dr. Jananya Sthienchoak" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Jananya_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Jananya Sthienchoak</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kritinee.jpg"
+                                        alt="Assistant Professor Dr. Kritinee Pongtanalert" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Kritinee_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kritinee Pongtanalert</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Kwanrat.jpg"
+                                        alt="Assistant Professor Dr. Kwanrat Suanpong" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Kwanrat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Kwanrat Suanpong</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Nongnapat.jpg"
+                                        alt="Assistant Professor Dr. Nongnapat Thosuwanchot" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Nongnapat_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Nongnapat Thosuwanchot</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Pimsiri.jpg"
+                                        alt="Assistant Professor Dr. Pimsiri Chiwamit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Pimsiri_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Pimsiri Chiwamit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Punthumadee.jpg"
+                                        alt="Assistant Professor Dr. Punthumadee Katawandee" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Punthumadee_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Punthumadee Katawandee</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Rapeeporn.jpg"
+                                        alt="Assistant Professor Dr. Rapeeporn Rungsithong" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Rapeeporn_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Rapeeporn Rungsithong</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Ruttachai.jpg"
+                                        alt="Assistant Professor Dr. Ruttachai Seelajaroen" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Ruttachai_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Ruttachai Seelajaroen</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Theeranuch.jpg"
+                                        alt="Assistant Professor Dr. Theeranuch Pusaksrikit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Theeranuch_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Theeranuch Pusaksrikit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Dr.Thira.jpg"
+                                        alt="Assistant Professor Dr. Thira Chavarnakul" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Assistant Professor Dr. Thira_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-assistant text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Asst. Prof.</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Thira Chavarnakul</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-mt-32 mb-20" id="lecturer">
+                        <div class="flex items-end gap-4 mb-4">
+                            <h2 class="text-5xl font-headline font-extrabold tracking-tight">
+                                <span class="text-primary">Lecturer</span>
+                            </h2>
+                            <div class="h-[2px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                        </div>
+                        <p class="text-slate-500 mb-10 max-w-lg">Lecturers with specialized knowledge</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <div class="professor-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm group">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-b from-slate-100 to-slate-50">
+                                    <img class="card-image w-full h-full object-cover object-top"
+                                        src="https://mmchula.cbs.chula.ac.th/upload/images/thaiprofessor/Santhaya.jpg"
+                                        alt="Lecturer Dr. Santhaya Kittikowit" />
+                                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-center pb-6">
+                                        <a class="cv-link inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg hover:bg-white hover:scale-105 transition-all"
+                                            href="https://mmchula.cbs.chula.ac.th/upload/files/thaiprofessor/Dr. Santhaya_CV.pdf"
+                                            target="_blank">
+                                            <span class="material-symbols-outlined text-sm">description</span>
+                                            View CV
+                                        </a>
+                                    </div>
+                                    <div class="absolute top-4 right-4">
+                                        <span class="rank-badge-lecturer text-white text-[9px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-lg">Lecturer</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">Dr. Santhaya Kittikowit</h4>
+                                    <div class="w-8 h-[2px] bg-primary/30 rounded-full mb-3 group-hover:w-16 transition-all"></div>
+                                    <p class="text-xs text-slate-400">Chulalongkorn Business School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-background-dark text-slate-400 py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="bg-primary p-1.5 rounded-lg">
+                            <span class="material-symbols-outlined text-white text-xl">school</span>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter text-white">MMChula</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        The Master of Management Program at Chulalongkorn Business School. Shaping global leaders since 1996.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="https://www.facebook.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="https://www.instagram.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="https://www.linkedin.com/company/master-of-management-mmchula/" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="https://tiktok.com/@master.of.management" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.3-.72.42-1.33 1.11-1.52 1.93-.21.81-.13 1.69.26 2.42.39.73 1.12 1.25 1.93 1.43.91.22 1.91.03 2.67-.54.61-.43.95-1.14 1.05-1.86.08-1.48.03-2.96.04-4.44.01-4.33 0-8.67.01-13z"/></svg>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="https://www.youtube.com/channel/UC3RReA-rFFxAnGpef-FaOWA">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Navigation</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Admission</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="./academic-calendar.html">Academic Calendar</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Support</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="./contact.html">Contact Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Student Portal</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Alumni Network</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Contact</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                            Master of Management in International Business (International Program)<br />
+                            Faculty of Commerce and Accountancy, Chulalongkorn University, Pathumwan, Bangkok, 10330 Thailand
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">mail</span>
+                            mmchula@cbs.chula.ac.th
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">call</span>
+                            +66 2218 5912, +66 2218 6131, +66 84 555 6087
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; 2026 Master of Management Program, Chulalongkorn Business School. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./wwwroot/js/main.js"></script>
+    <script>
+        var observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, index) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.classList.add('visible');
+                    }, index * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.professor-card').forEach(function(card) {
+            observer.observe(card);
+        });
+
+        document.querySelectorAll('.counter-item').forEach(function(item) {
+            observer.observe(item);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            var floatingElements = document.querySelectorAll('.animate-float, .animate-float-reverse, .animate-float-slow');
+            floatingElements.forEach(function(el, index) {
+                var speed = 0.1 + (index * 0.05);
+                el.style.transform = 'translateY(' + scrolled * speed + 'px)';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Student Exchange - MMChula | Master of Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="./wwwroot/js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="./wwwroot/css/main.css">
+    <style>
+        /* Student Exchange Page Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Globe Animation */
+        .globe-spin {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Pulse Glow */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(238, 23, 119, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(238, 23, 119, 0.6); }
+        }
+
+        /* Partner University Card Hover */
+        .uni-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .uni-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(238, 23, 119, 0.2);
+        }
+
+        /* Gradient Border Animation */
+        .gradient-border {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 1rem;
+            background: linear-gradient(45deg, #ee1777, #ff6b6b, #ee1777, #ff6b6b);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <img alt="MMChula Logo" src="./wwwroot/images/logo.png" width="200" />
+                </div>
+                <div class="hidden lg:flex items-center gap-6">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./">Home</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./announcement.html">Announcement</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            About Us <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./mission-vision.html">Mission &amp; Vision</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./management-team.html">Management Team</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./advisory-boards.html">Advisory Board</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./thai-professor.html">Thai Professor</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./international-professors.html">International Professor</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Admission <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="#">Requirement</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./schedule.html">Schedule</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./course-structure.html">Course Structure</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./program-fee.html">Program Fee</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold hover:text-primary transition-colors py-8">
+                            Current Student <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-56 bg-white dark:bg-slate-800 shadow-xl rounded-lg py-2 border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./academic-calendar.html">Academic Calendar</a>
+                            <a class="block px-4 py-2 text-sm text-primary hover:bg-primary/40" href="./student-exchange.html">Student Exchange</a>
+                            <a class="block px-4 py-2 text-sm hover:bg-primary/40" href="./is-topics.html">IS Topic</a>
+                        </div>
+                    </div>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./faq.html">FAQ</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="./contact.html">Contact Us</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="material-symbols-outlined p-2 text-slate-600 hover:text-primary transition-colors">search</button>
+                    <a class="bg-primary text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 transition-transform" href="https://onlinemm.cbs.chula.ac.th/MMinter2026">Apply
+                        Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-primary via-pink-600 to-secondary py-24 overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="particle w-4 h-4" style="left: 10%; animation-duration: 15s; animation-delay: 0s;"></div>
+            <div class="particle w-6 h-6" style="left: 20%; animation-duration: 18s; animation-delay: 2s;"></div>
+            <div class="particle w-3 h-3" style="left: 35%; animation-duration: 12s; animation-delay: 4s;"></div>
+            <div class="particle w-5 h-5" style="left: 50%; animation-duration: 20s; animation-delay: 1s;"></div>
+            <div class="particle w-4 h-4" style="left: 65%; animation-duration: 16s; animation-delay: 3s;"></div>
+            <div class="particle w-7 h-7" style="left: 75%; animation-duration: 22s; animation-delay: 5s;"></div>
+            <div class="particle w-3 h-3" style="left: 85%; animation-duration: 14s; animation-delay: 2s;"></div>
+            <div class="particle w-5 h-5" style="left: 90%; animation-duration: 17s; animation-delay: 4s;"></div>
+        </div>
+        <div class="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl float"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl float" style="animation-delay: 3s;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 fade-in-up">
+                    <span class="material-symbols-outlined text-white">public</span>
+                    <span class="text-white font-semibold text-sm">Global Learning Experience</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 fade-in-up stagger-2">Student Exchange Program</h1>
+                <p class="text-lg text-white/90 max-w-3xl mx-auto fade-in-up stagger-3">Expand your horizons, build global connections, and experience world-class education at our prestigious partner universities around the world</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Program Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div class="fade-in-left">
+                    <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4">About The Program</h2>
+                    <h3 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-6">Discover the World Through Education</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">The Chulalongkorn MM Student Exchange Program provides outstanding foreign as well as Thai students an opportunity to establish meaningful relationships. All MM students are encouraged to participate in the Student Exchange Program in foreign countries and at universities that best meet their long-term professional interests.</p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">Many students also learn foreign languages. The program offers student exchanges at leading international universities for a semester.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">check_circle</span>
+                            <span class="text-sm font-semibold">One Semester Abroad</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">check_circle</span>
+                            <span class="text-sm font-semibold">Credit Transfer</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">check_circle</span>
+                            <span class="text-sm font-semibold">Global Network</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="relative fade-in-right">
+                    <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+                        <div class="absolute bottom-0 left-0 w-40 h-40 bg-secondary/20 rounded-full blur-2xl"></div>
+                        <div class="relative z-10 grid grid-cols-2 gap-6">
+                            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg text-center scale-in stagger-1">
+                                <span class="material-symbols-outlined text-primary text-5xl mb-3">school</span>
+                                <h4 class="text-3xl font-black text-slate-900 dark:text-white">9+</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Partner Universities</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg text-center scale-in stagger-2">
+                                <span class="material-symbols-outlined text-primary text-5xl mb-3">public</span>
+                                <h4 class="text-3xl font-black text-slate-900 dark:text-white">5+</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Countries</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg text-center scale-in stagger-3">
+                                <span class="material-symbols-outlined text-primary text-5xl mb-3">translate</span>
+                                <h4 class="text-3xl font-black text-slate-900 dark:text-white">3+</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Languages</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg text-center scale-in stagger-4">
+                                <span class="material-symbols-outlined text-primary text-5xl mb-3">emoji_people</span>
+                                <h4 class="text-3xl font-black text-slate-900 dark:text-white">100+</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Alumni Network</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-24 bg-background-light dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4 fade-in-up">Why Exchange?</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">Benefits of Student Exchange</h3>
+                <p class="text-slate-600 dark:text-slate-400 fade-in-up stagger-2">Students who would like to apply for the "student exchange program" are exempted from paying tuition fees to the host university; yet, they have to pay tuition fee to home university. In addition, students will be able to transfer credits earned.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-1 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Tuition Fee Waiver</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Exempted from paying tuition fees to the host university. Only pay tuition to your home university.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-2 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">sync_alt</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Credit Transfer</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Transfer credits earned at partner universities back to your MM program seamlessly.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-3 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">language</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Language Skills</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Learn foreign languages and immerse yourself in new cultures while studying abroad.</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-4 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Global Network</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Build meaningful relationships with students and faculty from around the world.</p>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-5 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">work</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Career Growth</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Enhance your resume with international experience that employers value.</p>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-300 fade-in-up stagger-6 group">
+                    <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">travel_explore</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Cultural Experience</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Experience diverse cultures and broaden your global perspective firsthand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Universities Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4 fade-in-up">Global Partners</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">Sample Partnered Universities</h3>
+                <p class="text-slate-600 dark:text-slate-400 fade-in-up stagger-2">Our network includes prestigious institutions across Europe, North America, and Asia</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- University Cards -->
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-1">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">RWTH Aachen</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Germany</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-2">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">University of Mannheim</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Germany</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-3">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">University of Florida</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">USA</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-4">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">University of Cologne</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Germany</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-5">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">University of St. Gallen</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Switzerland</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-6">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Korea University (KUBS)</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">South Korea</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-1">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">ESCP Business School</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">France</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-2">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Simon Fraser University</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Canada</p>
+                </div>
+
+                <div class="uni-card bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 shadow-md border border-slate-100 dark:border-slate-600 text-center scale-in stagger-3 col-span-2 md:col-span-1">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-4xl">apartment</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Solvay Brussels School</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Belgium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process Section -->
+    <section class="py-24 bg-background-light dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4 fade-in-up">How to Apply</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">Application Process</h3>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative fade-in-up stagger-1">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">1</div>
+                        <h4 class="font-bold text-lg mb-2">Check Eligibility</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Review requirements and ensure you meet the criteria</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-8 text-primary">
+                        <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative fade-in-up stagger-2">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">2</div>
+                        <h4 class="font-bold text-lg mb-2">Choose University</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Select from our partner universities worldwide</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-8 text-primary">
+                        <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative fade-in-up stagger-3">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">3</div>
+                        <h4 class="font-bold text-lg mb-2">Submit Application</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Complete and submit your application form</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-8 text-primary">
+                        <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="fade-in-up stagger-4">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-black">4</div>
+                        <h4 class="font-bold text-lg mb-2">Go Abroad!</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Start your international learning journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inbound/Outbound Student Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4 fade-in-up">Resources</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">Student Information</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Inbound Student -->
+                <div class="gradient-border bg-white dark:bg-slate-800 rounded-2xl p-10 shadow-lg border border-slate-100 dark:border-slate-700 text-center fade-in-left group">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-white text-4xl">flight_land</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Inbound Student</h4>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Coming to study at Chulalongkorn University from a partner institution</p>
+                    <a class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition-colors" href="#" target="_blank">
+                        <span class="material-symbols-outlined">download</span>
+                        Download Factsheet
+                    </a>
+                </div>
+
+                <!-- Outbound Student -->
+                <div class="gradient-border bg-white dark:bg-slate-800 rounded-2xl p-10 shadow-lg border border-slate-100 dark:border-slate-700 text-center fade-in-right group">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-secondary to-orange-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-white text-4xl">flight_takeoff</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">Outbound Student</h4>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Going abroad to study at one of our partner universities</p>
+                    <a class="inline-flex items-center gap-2 bg-secondary text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors" href="#" target="_blank">
+                        <span class="material-symbols-outlined">download</span>
+                        Download Info Sheet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-br from-primary via-pink-600 to-secondary relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl float"></div>
+            <div class="absolute bottom-20 right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl float" style="animation-delay: 2s;"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-6 fade-in-up">Ready to Start Your Global Journey?</h2>
+            <p class="text-lg text-white/90 mb-10 max-w-2xl mx-auto fade-in-up stagger-1">Apply now for the Student Exchange Program and experience world-class education at our prestigious partner universities</p>
+            <a class="inline-flex items-center gap-3 bg-white text-primary px-10 py-4 rounded-xl font-bold text-lg shadow-2xl hover:scale-105 transition-transform pulse-glow fade-in-up stagger-2" href="https://onlinemm.cbs.chula.ac.th/MMinter2026" target="_blank">
+                <span class="material-symbols-outlined">rocket_launch</span>
+                Apply Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-background-dark text-slate-400 py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="bg-primary p-1.5 rounded-lg">
+                            <span class="material-symbols-outlined text-white text-xl">school</span>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter text-white">MMChula</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        The Master of Management Program at Chulalongkorn Business School. Shaping global leaders since
+                        1996.
+                    </p>
+                    <div class="flex gap-4">
+                        <!-- Facebook -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.facebook.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.instagram.com/mmchula">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.linkedin.com/company/master-of-management-mmchula/" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://tiktok.com/@master.of.management" target="_blank">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.3-.72.42-1.33 1.11-1.52 1.93-.21.81-.13 1.69.26 2.42.39.73 1.12 1.25 1.93 1.43.91.22 1.91.03 2.67-.54.61-.43.95-1.14 1.05-1.86.08-1.48.03-2.96.04-4.44.01-4.33 0-8.67.01-13z"/>
+                            </svg>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"
+                            href="https://www.youtube.com/channel/UC3RReA-rFFxAnGpef-FaOWA">
+                            <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                                </path>
+                            </svg>
+                        </a>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Navigation</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="./">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Admission</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="./student-exchange.html">Student Exchange</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="./faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Support</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="./contact.html">Contact Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Student Portal</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Alumni Network</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-8">Contact</h5>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                            Master of Management in International Business (International Program)<br />
+                            Faculty of Commerce and Accountancy, Chulalongkorn University, Pathumwan, Bangkok, 10330 Thailand
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">mail</span>
+                            mmchula@cbs.chula.ac.th
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm">call</span>
+                            +66 2218 5912, +66 2218 6131, +66 84 555 6087
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p> 2026 Master of Management Program, Chulalongkorn Business School. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="#">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
